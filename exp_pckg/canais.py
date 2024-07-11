@@ -1,0 +1,156 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr  8 17:51:44 2024
+
+@author: ArthurRodrigues
+"""
+from tools import replace_
+
+canal_dict = {
+            'Área': {
+                         'Expansão franqueado': 'Franqueado',
+                         'Facebook': 'Marketing',
+                         'Facebook c/ Diferenciais': 'Marketing',
+                         'Facebook c/ Investimento': 'Marketing',
+                         'LinkedIn': 'Marketing',
+                         'Leads Redes Sociais': 'Marketing',
+                         'Receptiva - Zenvia': 'Marketing',
+                         'Live': 'Marketing',
+                         'Formulário Ponto.ABC': 'Marketing',
+                         'Receptiva - Formulário Corporativo': 'Marketing',
+                         'Receptiva - Formulário Franquias ABC': 'Marketing',
+                         'Receptiva - Formulário Franquias ABC - Nova LP 2022': 'Marketing',
+                         'Receptiva - Formulário Pólen': 'Marketing',
+                         'Formulário Linktree': 'Marketing',
+                         'Formulário Redes Sociais': 'Marketing',
+                         'Formulário WhatsApp': 'Marketing',
+                         'Feira ABF Rio 2019': 'Outbound',
+                         'Feicon 2024': 'Outbound',
+                         'Ativa - Júnior': 'Outbound',
+                         'Ativa - Varredura praças google': 'Outbound',
+                         'Outbound - Ativa': 'Outbound',
+                         'Evento/Feira': 'Outbound',
+                         'Mala Direta': 'Outbound',
+                         'Outbound - Indicação Equipe': 'Outbound',
+                         'Ativa - Mauro': 'Outbound',
+                         'Outbound - Store in Store': 'Outbound',
+                         'Outbound - Lojas Parceiras': 'Outbound',
+                         'Outbound - Store in Store - Ativa': 'Outbound',
+                         'Ativa - Pólen': 'Outbound',
+                         'Indicação Franqueado ABC': 'Relacionamento ABC',
+                         'Receptiva - Contato ABC': 'Relacionamento ABC',
+                         'Relacionamento ABC': 'Relacionamento ABC',
+                         'Reativação Açao': 'Reativação',
+                         'Reativação Equipe': 'Reativação',
+                         'Repasse': 'Franqueado',
+                         'Repasse - Loja Própria': 'Franqueado',
+                         'BOT ABC Expansão': 'Marketing',
+                         'WhatsApp': 'Marketing',
+                         'Reativação Repasse': 'Reativação',
+                         'Reativação': 'Reativação',
+                         'Ativa - Gustavo': 'Outbound',
+                         'Ativa - Hugo': 'Outbound'},
+            'Grupo': {
+                         'Expansão franqueado': 'Expansão franqueado',
+                         'Facebook': 'Leads - Campanhas Redes Sociais',
+                         'Facebook c/ Diferenciais': 'Leads - Campanhas Redes Sociais',
+                         'Facebook c/ Investimento': 'Leads - Campanhas Redes Sociais',
+                         'LinkedIn': 'Leads - Campanhas Redes Sociais',
+                         'Leads Redes Sociais': 'Leads - Campanhas Redes Sociais',
+                         'Receptiva - Zenvia': 'Leads - Campanhas WhatsApp',
+                         'Live': 'Live',
+                         'Formulário Ponto.ABC': 'MQL - Formulários Landingpage',
+                         'Receptiva - Formulário Corporativo': 'MQL - Formulários Landingpage',
+                         'Receptiva - Formulário Franquias ABC': 'MQL - Formulários Landingpage',
+                         'Receptiva - Formulário Franquias ABC - Nova LP 2022': 'MQL - Formulários Landingpage',
+                         'Receptiva - Formulário Pólen': 'MQL - Formulários Landingpage',
+                         'Formulário Linktree': 'MQL - Formulários Redes Sociais',
+                         'Formulário Redes Sociais': 'MQL - Formulários Redes Sociais',
+                         'Formulário WhatsApp': 'MQL - Formulários WhatsApp',
+                         'Feira ABF Rio 2019': 'Eventos',
+                         'Feicon 2024': 'Outbound',
+                         'Ativa - Júnior': 'Outbound ABC',
+                         'Ativa - Varredura praças google': 'Outbound ABC',
+                         'Outbound - Ativa': 'Outbound ABC',
+                         'Evento/Feira': 'Outbound ABC',
+                         'Mala Direta': 'Outbound ABC',
+                         'Outbound - Indicação Equipe': 'Outbound ABC',
+                         'Ativa - Mauro': 'Outbound Externo',
+                         'Outbound - Store in Store': 'Outbound ABC',
+                         'Outbound - Lojas Parceiras': 'Outbound ABC',
+                         'Outbound - Store in Store - Ativa': 'Outbound ABC',
+                         'Ativa - Pólen': 'Outbound Externo',
+                         'Indicação Franqueado ABC': 'Relacionamento ABC',
+                         'Receptiva - Contato ABC': 'Relacionamento ABC',
+                         'Relacionamento ABC': 'Relacionamento ABC',
+                         'Reativação Açao': 'Reativação',
+                         'Reativação Equipe': 'Reativação',
+                         'Reativação': 'Reativação',
+                         'Repasse': 'Repasse',
+                         'Repasse - Loja Própria': 'Repasse',
+                         'BOT ABC Expansão': 'MQL - Formulários WhatsApp',
+                         'WhatsApp': 'Reativação',
+                         'Reativação Repasse': 'Repasse',
+                         'Ativa - Gustavo': 'Outbound ABC',
+                         'Ativa - Hugo': 'Outbound ABC'}
+            }
+
+
+como_soube_dict = {'Google: Pesquisa por franquias': 'Search',
+ 'Redes Sociais: Instagram': 'Redes Sociais',
+ 'Relacionamento ABC: Franqueado Funcionário ou loja ABC': 'Relacionamento ABC',
+ 'Google: Pesquisa por construção/acabamento em geral': 'Search',
+ 'Anúncio Outros Sites': 'Site',
+ 'Redes Sociais: Facebook': 'Redes Sociais',
+ 'Relacionamento ABC: Indicação de amigo parceiros clientes etc (outros)': 'Relacionamento ABC',
+ 'Redes Sociais: Não sabe qual': 'Redes Sociais',
+ 'Indicação de amigos grupos etc': 'Relacionamento ABC',
+ 'Outbound (prospeção ativa)': 'Site',
+ 'Site ABC / E-commerce': 'Site',
+ 'Não sabe onde': 'Não sabe onde',
+ 'Site ABF (Associação Brasileira de Franquias)': 'Site',
+ 'Redes Sociais: YouTube': 'Redes Sociais',
+ 'E-mail marketing': 'Relacionamento ABC',
+ 'Podcast': 'Redes Sociais',
+ 'Relacionamento ABC: Inauguração loja': 'Relacionamento ABC',
+ 'Mala Direta': 'Outbound',
+ 'Duratex / Dexco': 'Relacionamento ABC',
+ 'Expansão Franqueado': 'Relacionamento ABC',
+ '!Flamengo: Jogo do Clube': 'Futebol',
+ 'Concorrente - Hausz': 'Concorrente',
+ 'Imprensa / Matéria': 'Site',
+ '!São Paulo: Redes Sociais São Paulo': 'Futebol',
+ 'Redes Sociais: LinkedIn': 'Redes Sociais',
+ 'Caminhão ABC': 'Branding',
+ '!Atlético: Redes Sociais': 'Site',
+ 'LivElo': 'Site',
+ '!Atlético: Sócio torcedor': 'Futebol',
+ '!São Paulo: Não sabe': 'Futebol',
+ '!Flamengo: Não sabe': 'Futebol',
+ 'Anamaco (revista ou site)': 'Site',
+ '!São Paulo: Jogo do Clube': 'Futebol',
+ '!Flamengo: Redes Sociais Flamengo': 'Futebol',
+ '!Atlético: Jogo do Clube': 'Futebol',
+ '!Flamengo: Site Flamengo': 'Futebol',
+ '!Flamengo: Redes Sociais ABC': 'Futebol',
+ '!Flamengo: Imprensa/mídia': 'Futebol',
+ 'Outbound - Ação simpatizantes': 'Outbound',
+ '!Flamengo: Site ABC': 'Time',
+ 'Gustavo Caetano': 'Site' ,
+ 'Portal Franchising': 'Futebol',
+ 'Construbrasil': 'Futebol',
+ '!Flamengo: FlaTV': 'Futebol'}
+
+
+def set_groups(dataframe):
+    canais             = dataframe['Canal']
+    dataframe['Grupo'] = [canal_dict['Grupo'].get(i,'Indefinido') for i in canais ]
+    dataframe['Área'] = [canal_dict['Área'].get(i,'Indefinido') for i in canais ]
+    to_replace = dataframe.query("Drive=='Outbound' and Área=='Marketing'")['Área'].apply(lambda X: 'Outbound')
+    dataframe = replace_(dataframe,to_replace,'Opp ID','Área')
+    to_replace = dataframe.query("Drive=='Outbound' and Área=='Indefinido'")['Área'].apply(lambda X: 'Outbound')
+    dataframe = replace_(dataframe,to_replace,'Opp ID','Área')
+    comosoube = dataframe['Como soube que a ABC é uma franquia?']
+    dataframe['Como Soube Resumo'] = [como_soube_dict.get(i,'Indefinido') for i in comosoube ]
+    dataframe['Vision'] = dataframe['Área'].replace({'Marketing':'Inbound','Indefinido':'Inbound'})
+    return dataframe
